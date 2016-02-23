@@ -222,7 +222,7 @@ describe('Granting with authorization_code grant type', function () {
         client_secret: 'nightworld',
         code: 'abc123'
       })
-      .expect(200, /"access_token":"(.*)"/i, done);
+      .expect(200, /"user_access_token":"(.*)"/i, done);
   });
 
 });

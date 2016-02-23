@@ -18,12 +18,12 @@ app.oauth = oauthserver({
 app.all('/oauth/token', app.oauth.grant());
 
 app.get('/secret', app.oauth.authorise(), function (req, res) {
-  // Will require a valid access_token
+  // Will require a valid user_access_token
   res.send('Secret area');
 });
 
 app.get('/public', function (req, res) {
-  // Does not require an access_token
+  // Does not require an user_access_token
   res.send('Public area');
 });
 

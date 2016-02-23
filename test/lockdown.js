@@ -70,13 +70,13 @@ describe('Lockdown pattern', function() {
     var app = bootstrap({
       model: {
         getAccessToken: function (token, callback) {
-          callback(token !== 'thom', { access_token: token, expires: null });
+          callback(token !== 'thom', { user_access_token: token, expires: null });
         }
       }
     });
 
     request(app)
-      .get('/private?access_token=thom')
+      .get('/private?user_access_token=thom')
       .expect(200, /hello/i, done);
   });
 
@@ -109,7 +109,7 @@ describe('Lockdown pattern', function() {
     function mockRequest(authoriseFactory) {
       var req = {
         get: function () {},
-        query: { access_token: { expires: null } }
+        query: { user_access_token: { expires: null } }
       };
       var next = function () {};
 

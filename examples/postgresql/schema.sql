@@ -29,11 +29,11 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: oauth_access_tokens; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: oauth_user_access_tokens; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE oauth_access_tokens (
-    access_token text NOT NULL,
+CREATE TABLE oauth_user_access_tokens (
+    user_access_token text NOT NULL,
     client_id text NOT NULL,
     user_id uuid NOT NULL,
     expires timestamp without time zone NOT NULL
@@ -75,11 +75,11 @@ CREATE TABLE users (
 
 
 --
--- Name: oauth_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: oauth_user_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY oauth_access_tokens
-    ADD CONSTRAINT oauth_access_tokens_pkey PRIMARY KEY (access_token);
+ALTER TABLE ONLY oauth_user_access_tokens
+    ADD CONSTRAINT oauth_user_access_tokens_pkey PRIMARY KEY (user_access_token);
 
 
 --

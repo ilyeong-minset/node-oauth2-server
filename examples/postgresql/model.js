@@ -25,8 +25,8 @@ var pg = require('pg'),
 model.getAccessToken = function (bearerToken, callback) {
   pg.connect(connString, function (err, client, done) {
     if (err) return callback(err);
-    client.query('SELECT access_token, client_id, expires, user_id FROM oauth_access_tokens ' +
-        'WHERE access_token = $1', [bearerToken], function (err, result) {
+    client.query('SELECT user_access_token, client_id, expires, user_id FROM oauth_user_access_tokens ' +
+        'WHERE user_access_token = $1', [bearerToken], function (err, result) {
       if (err || !result.rowCount) return callback(err);
       // This object will be exposed in req.oauth.token
       // The user_id field will be exposed in req.user (req.user = { id: "..." }) however if
@@ -34,7 +34,7 @@ model.getAccessToken = function (bearerToken, callback) {
       // in req.user instead
       var token = result.rows[0];
       callback(null, {
-        accessToken: token.access_token,
+        accessToken: token.user_access_token,
         clientId: token.client_id,
         expires: token.expires,
         userId: token.userId
@@ -92,7 +92,7 @@ model.grantTypeAllowed = function (clientId, grantType, callback) {
 model.saveAccessToken = function (accessToken, clientId, expires, userId, callback) {
   pg.connect(connString, function (err, client, done) {
     if (err) return callback(err);
-    client.query('INSERT INTO oauth_access_tokens(access_token, client_id, user_id, expires) ' +
+    client.query('INSERT INTO oauth_user_access_tokens(user_access_token, client_id, user_id, expires) ' +
         'VALUES ($1, $2, $3, $4)', [accessToken, clientId, userId, expires],
         function (err, result) {
       callback(err);

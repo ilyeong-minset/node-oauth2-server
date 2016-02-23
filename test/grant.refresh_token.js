@@ -193,7 +193,7 @@ describe('Granting with refresh_token grant type', function () {
         client_secret: 'nightworld',
         refresh_token: 'abc123'
       })
-      .expect(200, /"access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
+      .expect(200, /"user_access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
 
   });
 
@@ -238,7 +238,7 @@ describe('Granting with refresh_token grant type', function () {
         client_secret: 'nightworld',
         refresh_token: 'abc123'
       })
-      .expect(200, /"access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
+      .expect(200, /"user_access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
 
   });
 
@@ -280,7 +280,7 @@ describe('Granting with refresh_token grant type', function () {
         client_secret: 'nightworld',
         refresh_token: 'abc123'
       })
-      .expect(200, /"access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
+      .expect(200, /"user_access_token":"(.*)",(.*)"refresh_token":"(.*)"/i, done);
 
   });
 });
